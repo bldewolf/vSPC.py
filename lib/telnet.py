@@ -343,7 +343,7 @@ class VMTelnetServer(TelnetServer):
             self._send_vmware(WONT_PROXY)
 
     def _handle_vmotion_begin(self, data):
-        cookie = data + struct.pack("i", hash(self) & 0xFFFFFFFF)
+        cookie = data + struct.pack("I", hash(self) & 0xFFFFFFFF)
 
         if self.handler.handle_vmotion_begin(self, cookie):
             logging.debug("vMotion initiated: %s" % hexdump(cookie))
